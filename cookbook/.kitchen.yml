@@ -1,6 +1,10 @@
 ---
 driver:
   name: vagrant
+  synced_folders:
+   - ["../app","/minions"]
+  network:
+   - ["forwarded_port", {guest: 4567, host: 4567}]
 
 provisioner:
   name: chef_solo
@@ -10,6 +14,10 @@ platforms:
     driver:
       box: chef/ubuntu-14.10
 
-
 suites:
   - name: wdiy
+    run_list:
+     - wdiy
+
+
+
